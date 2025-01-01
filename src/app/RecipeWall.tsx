@@ -1,9 +1,9 @@
 "use client";
 
 import { rokkitt } from "@/app/fonts";
+import { Recipe } from "@/app/Recipe";
 import Image from "next/image";
 import { useState } from "react";
-import { Recipe } from "@/app/Recipe";
 
 export default function RecipeWall({ recipes }: { recipes: Recipe[] }) {
   const allSeasons = [
@@ -83,7 +83,7 @@ export default function RecipeWall({ recipes }: { recipes: Recipe[] }) {
           </button>
         </div>
       </div>
-      <div className="max-w-[856px] mx-auto flex justify-center">
+      <div className="max-w-[1144px] mx-auto flex justify-center">
         <div className="flex flex-wrap gap-2 justify-start">
           {recipes
             .filter((recipe) => {
