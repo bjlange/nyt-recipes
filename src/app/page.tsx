@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <div className="p-4">
       <h1 className={`${rokkitt.className} text-4xl font-black mb-4`}>
-        <span className="text-[#df321b]">Brian & Allison's Favorite</span> NYT
+        <span className="text-[#df321b]">Brian & Allison&apos;s Favorite</span> NYT
         Recipes
       </h1>
       <h2 className="text-2xl mb-4 font-bold">

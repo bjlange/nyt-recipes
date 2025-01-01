@@ -127,7 +127,7 @@ function Tag({
   onClick?: () => void;
   filled?: boolean;
 }) {
-  const tagColorMap = {
+  const tagColorMap: { [key: string]: string } = {
     Winter: filled
       ? "bg-blue-100 border-blue-100 border-2"
       : "border-blue-100 border-2",
