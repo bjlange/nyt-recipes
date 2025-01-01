@@ -3,23 +3,7 @@
 import { rokkitt } from "@/app/fonts";
 import Image from "next/image";
 import { useState } from "react";
-
-type Recipe = {
-  id: string;
-  fields: {
-    Name: string;
-    Notes: string;
-    Tags: string[];
-    Season: string[];
-    "Cover Image": [{
-      url: string;
-      width: number;
-      height: number;
-    }];
-    "Total time": string;
-    Link: string;
-  };
-};
+import { Recipe } from "@/app/Recipe";
 
 export default function RecipeWall({ recipes }: { recipes: Recipe[] }) {
   const allSeasons = [

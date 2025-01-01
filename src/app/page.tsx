@@ -1,15 +1,16 @@
-import RecipeWall from "./RecipeWall";
-import { rokkitt } from "./fonts";
 import Airtable from 'airtable';
+import { rokkitt } from "./fonts";
+import { Recipe } from "./Recipe";
+import RecipeWall from "./RecipeWall";
 
 export default async function Home() {
-  // const db = airtabler.init(config);
-  // const recipes = db.model("Recipes");
-  // const recipiesAll = await recipes.all();
-
-  const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT}).base(process.env.AIRTABLE_BASE_ID);
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT}).base(process.env.AIRTABLE_BASE_ID ?? '');
   const recipes = base('Recipes');
-  const recipiesAll = await recipes.select({}).all();
+  const records = await recipes.select({}).all();
+  const recipiesAll = records.map((record) => ({
+    id: record.id,
+    fields: record.fields
+  })) as unknown as Recipe[];
 
   return (
     <div className="p-4">
