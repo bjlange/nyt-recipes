@@ -7,15 +7,29 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-anytime-colors {
+  background: rgb(219,234,254);
+  background: linear-gradient(90deg, rgba(219,234,254,1) 0%, rgba(236,252,203,1) 37%, rgba(254,249,145,1) 63%, rgba(255,237,213,1) 100%);
+}
+
+.border-anytime-colors {
+  border: 2px solid rgb(226 232 240);
+}
+
+
+
+.georgia {
+  font-family: 'Georgia', serif;
 }
