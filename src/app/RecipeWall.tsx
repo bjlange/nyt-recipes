@@ -1,18 +1,35 @@
 "use client";
 
 import { rokkitt } from "@/app/fonts";
-import { AirtableRecord } from "airtabler";
 import Image from "next/image";
 import { useState } from "react";
-export default function RecipeWall({ recipes }: { recipes: AirtableRecord[] }) {
+
+type Recipe = {
+  id: string;
+  fields: {
+    Name: string;
+    Notes: string;
+    Tags: string[];
+    Season: string[];
+    "Cover Image": [{
+      url: string;
+      width: number;
+      height: number;
+    }];
+    "Total time": string;
+    Link: string;
+  };
+};
+
+export default function RecipeWall({ recipes }: { recipes: Recipe[] }) {
   const allSeasons = [
     ...new Set(
-      recipes.map((recipe: AirtableRecord) => recipe.fields.Season).flat()
+      recipes.map((recipe) => recipe.fields.Season).flat()
     ),
   ];
   const allTags = [
     ...new Set(
-      recipes.map((recipe: AirtableRecord) => recipe.fields.Tags).flat()
+      recipes.map((recipe) => recipe.fields.Tags).flat()
     ),
   ];
 
@@ -85,7 +102,7 @@ export default function RecipeWall({ recipes }: { recipes: AirtableRecord[] }) {
       <div className="max-w-[856px] mx-auto flex justify-center">
         <div className="flex flex-wrap gap-2 justify-start">
           {recipes
-            .filter((recipe: AirtableRecord) => {
+            .filter((recipe) => {
               if (
                 selectedSeason &&
                 recipe.fields.Season?.includes(selectedSeason)
@@ -96,7 +113,7 @@ export default function RecipeWall({ recipes }: { recipes: AirtableRecord[] }) {
               }
               return false;
             })
-            .filter((recipe: AirtableRecord) => {
+            .filter((recipe) => {
               if (selectedTags.length === 0) {
                 return true;
               }
@@ -104,7 +121,7 @@ export default function RecipeWall({ recipes }: { recipes: AirtableRecord[] }) {
                 recipe.fields.Tags.includes(tag)
               );
             })
-            .map((recipe: AirtableRecord) => (
+            .map((recipe) => (
               <RecipeCard
                 key={recipe.id}
                 recipe={recipe}
@@ -161,7 +178,7 @@ function Tag({
   );
 }
 
-function RecipeCard({ recipe, onTagClick, onSeasonClick }: { recipe: AirtableRecord, onTagClick: (tag: string) => void, onSeasonClick: (season: string) => void }) {
+function RecipeCard({ recipe, onTagClick, onSeasonClick }: { recipe: Recipe, onTagClick: (tag: string) => void, onSeasonClick: (season: string) => void }) {
   const coverImage = recipe.fields["Cover Image"][0];
   return (
     <div className="border border-[rgb(230,230,230)] max-w-[280px] relative">
